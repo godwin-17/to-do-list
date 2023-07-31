@@ -1,17 +1,45 @@
+import { useState } from "react";
 import "./Modal.css";
 
-const Modal = () => {
+interface Props {
+  onModalVisibility: (visibility: boolean) => void;
+  onSaveText: (text: string) => void;
+  onSaveTodo: () => void;
+}
+
+const Modal = ({ onModalVisibility, onSaveText, onSaveTodo }: Props) => {
+  const [textareaValue, setTextareaValue] = useState<string>("");
+
+  const handleTextareaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setTextareaValue(event.target.value);
+    onSaveText(event.target.value);
+  };
+
+  const handleSaveButtonClick = () => {
+    if (textareaValue.trim() === "") {
+      return;
+    }
+    onSaveTodo();
+    onModalVisibility(false);
+  };
+
   return (
     <>
-      <div className="overlay"></div>
+      <div className="overlay" onClick={() => onModalVisibility(false)}></div>
       <div className="modal">
         <div className="modal-subcontainer">
           <div className="modal-content">
             <textarea
               className="modal-text"
-              placeholder="Inserisci voce"></textarea>
+              placeholder="Inserisci voce"
+              value={textareaValue}
+              onChange={handleTextareaChange}></textarea>
           </div>
-          <button className="save-btn">Salva</button>
+          <button className="save-btn" onClick={handleSaveButtonClick}>
+            Salva
+          </button>
         </div>
       </div>
     </>
