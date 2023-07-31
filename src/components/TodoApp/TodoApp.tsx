@@ -3,20 +3,13 @@ import TodoList from "../TodoList/TodoList";
 import Modal from "../Modal/Modal";
 import "./TodoApp.css";
 import { useEffect, useRef, useState } from "react";
-
-interface TodoItem {
-  id: string;
-  text: string;
-  completed?: boolean;
-}
+import Todo from "../../interfaces/todoItem";
 
 const TodoApp = () => {
-  const storedTodos: TodoItem = JSON.parse(
-    localStorage.getItem("todos") || "{}"
-  );
+  const storedTodos: Todo = JSON.parse(localStorage.getItem("todos") || "{}");
   const [modalVisibility, setModalVisibility] = useState<boolean>(false);
   const [savedText, setSavedText] = useState<string>("");
-  const [todos, setTodos] = useState<TodoItem[]>([] || storedTodos);
+  const [todos, setTodos] = useState<Todo[]>([] || storedTodos);
   const counterRef = useRef<number>(0);
 
   useEffect(() => {
@@ -40,10 +33,8 @@ const TodoApp = () => {
   };
 
   const handleSaveTodo = () => {
-    console.log(todos);
-
     if (savedText.trim() !== "") {
-      const newTodo: TodoItem = {
+      const newTodo: Todo = {
         id: `${counterRef.current}`,
         text: savedText,
         completed: false,
@@ -64,7 +55,7 @@ const TodoApp = () => {
 
   const handleCheckboxChange = (id: string, completed: boolean) => {
     setTodos((prevTodos) => {
-      const updatedTodos: TodoItem[] = prevTodos.map((todo) =>
+      const updatedTodos: Todo[] = prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed } : todo
       );
 

@@ -1,14 +1,9 @@
 import "./TodoList.css";
 import TodoItem from "../TodoItem/TodoItem";
-
-interface TodoItem {
-  id: string;
-  text: string;
-  completed?: boolean;
-}
+import Todo from "../../interfaces/todoItem";
 
 interface Props {
-  todos: TodoItem[];
+  todos: Todo[];
   onCheckboxChange: (id: string, completed: boolean) => void;
   onDeleteTodo: (id: string) => void;
 }
