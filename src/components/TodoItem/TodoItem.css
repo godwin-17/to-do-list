@@ -20,6 +20,10 @@
   font-size: 17px;
 }
 
+.todo-text.completed-todo {
+  text-decoration: line-through;
+}
+
 .checkbox-container input {
   display: none;
 }
