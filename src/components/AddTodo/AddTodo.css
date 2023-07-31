@@ -1,0 +1,10 @@
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 32px;
+}
+
+.add-icon {
+  width: 40px;
+}
