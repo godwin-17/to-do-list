@@ -11,10 +11,25 @@ interface TodoItem {
 }
 
 const TodoApp = () => {
+  const storedTodos: TodoItem = JSON.parse(
+    localStorage.getItem("todos") || "{}"
+  );
   const [modalVisibility, setModalVisibility] = useState<boolean>(false);
   const [savedText, setSavedText] = useState<string>("");
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [todos, setTodos] = useState<TodoItem[]>([] || storedTodos);
   const counterRef = useRef<number>(0);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    if (modalVisibility) {
+      document.body.classList.add("active-modal");
+    } else {
+      document.body.classList.remove("active-modal");
+    }
+  }, [modalVisibility]);
 
   const handleModalVisibility = (visibility: boolean) => {
     setModalVisibility(visibility);
@@ -34,10 +49,16 @@ const TodoApp = () => {
         completed: false,
       };
 
-      counterRef.current++;
+      const updatedTodos = [...todos, newTodo];
+      updatedTodos.sort((a, b) => {
+        if (a.completed && !b.completed) return 1;
+        if (!a.completed && b.completed) return -1;
+        return 0;
+      });
 
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
+      setTodos(updatedTodos);
       setSavedText("");
+      counterRef.current++;
     }
   };
 
@@ -60,14 +81,6 @@ const TodoApp = () => {
   const handleDeleteTodo = (id: string) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
-
-  useEffect(() => {
-    if (modalVisibility) {
-      document.body.classList.add("active-modal");
-    } else {
-      document.body.classList.remove("active-modal");
-    }
-  }, [modalVisibility]);
 
   return (
     <div className="todo-app">
