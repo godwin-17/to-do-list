@@ -35,10 +35,6 @@
   cursor: pointer;
 }
 
-.checkbox-container input:checked + .checkmark {
-  background-image: url("src/assets/Checkbox_On.svg");
-}
-
-.checkbox-container input:not(:checked) + .checkmark {
-  background-image: url("src/assets/Checkbox_Off.svg");
+.checkbox-container input {
+  display: none;
 }
