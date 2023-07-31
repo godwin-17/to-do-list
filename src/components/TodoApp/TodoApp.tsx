@@ -24,15 +24,15 @@ const TodoApp = () => {
     }
   }, [modalVisibility]);
 
-  const handleModalVisibility = (visibility: boolean) => {
+  const handleModalVisibility = (visibility: boolean): void => {
     setModalVisibility(visibility);
   };
 
-  const handleSavedText = (text: string) => {
+  const handleSavedText = (text: string): void => {
     setSavedText(text);
   };
 
-  const handleSaveTodo = () => {
+  const handleSaveTodo = (): void => {
     if (savedText.trim() !== "") {
       const newTodo: Todo = {
         id: `${counterRef.current}`,
@@ -53,7 +53,7 @@ const TodoApp = () => {
     }
   };
 
-  const handleCheckboxChange = (id: string, completed: boolean) => {
+  const handleCheckboxChange = (id: string, completed: boolean): void => {
     setTodos((prevTodos) => {
       const updatedTodos: Todo[] = prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed } : todo
@@ -69,7 +69,7 @@ const TodoApp = () => {
     });
   };
 
-  const handleDeleteTodo = (id: string) => {
+  const handleDeleteTodo = (id: string): void => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 

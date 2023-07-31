@@ -12,12 +12,12 @@ const Modal = ({ onModalVisibility, onSaveText, onSaveTodo }: Props) => {
 
   const handleTextareaChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
+  ): void => {
     setTextareaValue(event.target.value);
     onSaveText(event.target.value);
   };
 
-  const handleSaveButtonClick = () => {
+  const handleSaveButtonClick = (): void => {
     if (textareaValue.trim() === "") {
       return;
     }

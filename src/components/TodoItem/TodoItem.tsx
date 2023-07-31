@@ -15,12 +15,14 @@ const TodoItem = ({
   onCheckboxChange,
   onDelete,
 }: Props) => {
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const { checked } = event.target;
     onCheckboxChange(id, checked);
   };
 
-  const handleDeleteTodo = () => {
+  const handleDeleteTodo = (): void => {
     onDelete(id);
   };
 
