@@ -31,3 +31,18 @@ button {
   color: #01001e;
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border: 3px solid #212121;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #212121;
+  border-radius: 16px;
+}
