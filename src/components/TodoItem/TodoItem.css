@@ -1,0 +1,40 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.todo-icons {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.bin-icon {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.todo-text {
+  font-size: 17px;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkbox-container .checkmark {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.checkbox-container input:checked + .checkmark {
+  background-image: url("src/assets/Checkbox_On.svg");
+}
+
+.checkbox-container input:not(:checked) + .checkmark {
+  background-image: url("src/assets/Checkbox_Off.svg");
+}
