@@ -6,10 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import Todo from "../../interfaces/todoItem";
 
 const TodoApp = () => {
-  const storedTodos: Todo = JSON.parse(localStorage.getItem("todos") || "{}");
+  const storedTodos: Todo[] = JSON.parse(localStorage.getItem("todos") || "{}");
   const [modalVisibility, setModalVisibility] = useState<boolean>(false);
   const [savedText, setSavedText] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([] || storedTodos);
+  const [todos, setTodos] = useState<Todo[]>(storedTodos || []);
   const counterRef = useRef<number>(0);
 
   useEffect(() => {
